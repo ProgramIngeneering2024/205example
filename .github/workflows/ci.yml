@@ -15,15 +15,6 @@ jobs:
         with:
           python-version: "3.11"
 
-      # 3. Кэширование зависимостей (pip)
-      - uses: actions/cache@v4
-        id: pip-cache
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
       # 4. Установка зависимостей
       - name: Install dependencies
         run: pip install -r requirements.txt
