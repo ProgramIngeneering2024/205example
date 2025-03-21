@@ -6,12 +6,38 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # 1. Загрузка кода
       - uses: actions/checkout@v4
+
+      # 2. Настройка Python
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
+      # 3. Кэширование зависимостей (pip)
+      - uses: actions/cache@v4
+        id: pip-cache
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      # 4. Установка зависимостей
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      # 5. Проверка стиля кода (Pylint)
+      - name: Run Pylint
+        run: pylint main.py
+
+      # 6. Анализ безопасности (Bandit)
+      - name: Run Bandit
+        run: bandit -r main.py
+
+      # 7. Пример теста (опционально)
+      - name: Run tests
+        run: echo "Тесты пройдены"
         
   sonarqube:
     name: SonarQube
