@@ -38,6 +38,7 @@ jobs:
       # 7. Пример теста (опционально)
       - name: Run tests
         run: echo "Тесты пройдены"
+
         
   sonarqube:
     name: SonarQube
@@ -50,3 +51,5 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+
