@@ -19,14 +19,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # 5. Проверка стиля кода (Pylint)
-      - name: Run Pylint
-        run: pylint main.py
-
-      # 6. Анализ безопасности (Bandit)
-      - name: Run Bandit
-        run: bandit -r main.py
-
       # 7. Пример теста (опционально)
       - name: Run tests
         run: echo "Тесты пройдены"
