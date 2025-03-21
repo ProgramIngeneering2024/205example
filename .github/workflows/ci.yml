@@ -7,19 +7,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Загрузка кода
       - uses: actions/checkout@v4
 
-      # 2. Настройка Python
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      # 4. Установка зависимостей
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Добавьте в секцию steps:
       - name: SonarQube Analysis
         uses: sonarsource/sonarqube-scan-action@v1
         env:
@@ -31,6 +27,5 @@ jobs:
             -Dsonar.sources=.
             -Dsonar.python.pylint.reportPaths=pylint.log  # Интеграция с Pylint
 
-      # 7. Пример теста (опционально)
       - name: Run tests
         run: echo "Тесты пройдены"
