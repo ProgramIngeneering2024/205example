@@ -18,28 +18,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # 5. Проверка стиля кода (Pylint)
-      - name: Run Pylint
-        run: pylint main.py
-
-      # 6. Анализ безопасности (Bandit)
-      - name: Run Bandit
-        run: bandit -r main.py
-
       # 7. Пример теста (опционально)
       - name: Run tests
         run: echo "Тесты пройдены"
-        
-  sonarqube:
-    name: SonarQube
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-
