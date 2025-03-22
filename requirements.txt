@@ -1,3 +1,6 @@
 pylint
 bandit
 pandas
+requests
+SQLAlchemy
+Django
