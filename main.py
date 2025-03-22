@@ -4,4 +4,4 @@ import ast
 
 user_input = input("Введите число: ")
 number = ast.literal_eval(user_input)  # Безопасное преобразование
-print(number * 3)
+print(number * 4)
